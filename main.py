@@ -77,7 +77,7 @@ bg_color = ui.COLORS["NAVY"]
 if (line_1 and line_2 and line_3) != None:
     preset_time = f"{line_1}:{line_2}:{line_3}"
 else:
-    preset_time = "0:0:5"
+    preset_time = "0:30:0"
 
 control_box_info = {"button_color_passive":passive_color, "button_color_active":active_color, "button_x":(WIDTH*0.025), "button_y":(HEIGHT*0.66), "button_width":(WIDTH*0.45), "button_height":(HEIGHT*0.2), "button_border":5, "button_border_radius":10, "text":"START", "text_color":text_color, "text_x":(WIDTH*0.25), "text_y":(HEIGHT*0.76)}
 input_box_info = {"box_color_passive":passive_color, "box_color_active":active_color, "box_x":(WIDTH*0.525), "box_y":(HEIGHT*0.66), "box_width":(WIDTH*0.45), "box_height":(HEIGHT*0.2), "box_border":None, "box_border_radius":10, "text":preset_time, "text_color":text_color, "text_x":(WIDTH*0.75), "text_y":(HEIGHT*0.76)}
