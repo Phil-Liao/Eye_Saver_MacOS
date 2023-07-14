@@ -1,8 +1,7 @@
 import pygame, sys
 from pygame.locals import QUIT
+
 import playsound
-
-
 import threading
 import os
 
