@@ -1,0 +1,8 @@
+{
+    "WIDTH":500,
+    "HEIGHT":300,
+    "SCREEN_CAPTION":"Eye Saver",
+    "BG_COLOR":"NAVY",
+    "PASSIVE_COLOR":"DARKEST_BLUE",
+    "ACTIVE_COLOR":"MEDIUM_BLUE"
+}

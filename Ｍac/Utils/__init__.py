@@ -1,4 +1,4 @@
 from .colors import *
-from .buttons import *
+from .box import *
 import pygame
 pygame.init()
