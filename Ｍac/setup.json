@@ -2,9 +2,16 @@
     "WIDTH":500,
     "HEIGHT":300,
     "SCREEN_CAPTION":"Eye Saver",
-    "BG_COLOR":"NAVY",
     "PASSIVE_COLOR":"DARKEST_BLUE",
     "ACTIVE_COLOR":"MEDIUM_BLUE",
+
+    "TEXT_COLOR":"LIGHT_BLUE",
+    
+    "BG_TEXT_TYPE":"Segoe-UI",
+    "BG_TEXT_SIZE":32,
+    "BG_STARTUP_TEXT":"Type in your time to Start",
+
+    "BG_COLOR":"NAVY",
 
     "CONTROL_BOX_X":0.025,
     "CONTROL_BOX_Y":0.66,
