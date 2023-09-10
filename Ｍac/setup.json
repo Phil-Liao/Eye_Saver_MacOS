@@ -11,7 +11,7 @@
     
     "BG_TEXT_TYPE":"Segoe-UI",
     "BG_TEXT_SIZE":32,
-    "BG_STARTUP_TEXT":"Type in your time to start!",
+    "BG_STARTUP_TEXT":"Type in your time to start.",
     "BG_COLOR":"NAVY",
 
     "CONTROL_BOX_X":0.025,
@@ -21,7 +21,6 @@
     "CONTROL_BOX_BORDER_WIDTH":5,
     "CONTROL_BOX_BORDER_RADIUS":10,
     "CONTROL_BOX_BORDER_COLOR":"DARKEST_BLUE",
-    
     "CONTROL_BOX_TEXT_X":0.5,
     "CONTROL_BOX_TEXT_Y":0.5,
     "CONTROL_BOX_STARTUP_TEXT":"START",
@@ -33,6 +32,11 @@
     "INPUT_BOX_HEIGHT":0.2,
     "INPUT_BOX_BORDER_WIDTH":5,
     "INPUT_BOX_BORDER_RADIUS":10,
+    "INPUT_BOX_TEXT_X":0.5,
+    "INPUT_BOX_TEXT_Y":0.5,
+    "INPUT_BOX_STARTUP_TEXT":"minutes",
 
-    "FPS":60
+    "FPS":60,
+
+    "PRESET_TIME":30
 }

@@ -34,7 +34,7 @@ def draw_background(WIN, BG_COLOR, WIDTH, HEIGHT, font=None, text=None, text_col
 control_box = Utils.box(WIN, setup_info["WIDTH"], setup_info["HEIGHT"], setup_info["CONTROL_BOX_X"], setup_info["CONTROL_BOX_Y"], setup_info["CONTROL_BOX_WIDTH"], setup_info["CONTROL_BOX_HEIGHT"], True, None, 
                         True, setup_info["CONTROL_BOX_BORDER_WIDTH"], setup_info["CONTROL_BOX_BORDER_RADIUS"], Utils.COLORS[setup_info["CONTROL_BOX_BORDER_COLOR"]])
 control_box.is_button(Utils.COLORS[setup_info["ACTIVE_COLOR"]])
-control_box_font = set_font("Segoe-UI", 24)
+control_box_font = set_font()
 control_box_text = setup_info["CONTROL_BOX_STARTUP_TEXT"]
 control_box.is_display_text(control_box_font, control_box_text, Utils.COLORS[setup_info["TEXT_PASSIVE_COLOR"]], setup_info["CONTROL_BOX_TEXT_X"], setup_info["CONTROL_BOX_TEXT_Y"],
                             Utils.COLORS[setup_info["TEXT_ACTIVE_COLOR"]])
@@ -44,13 +44,21 @@ control_box.is_display_text(control_box_font, control_box_text, Utils.COLORS[set
 
 input_box = Utils.box(WIN, setup_info["WIDTH"], setup_info["HEIGHT"], setup_info["INPUT_BOX_X"], setup_info["INPUT_BOX_Y"], setup_info["INPUT_BOX_WIDTH"], setup_info["INPUT_BOX_HEIGHT"], False, Utils.COLORS[setup_info["PASSIVE_COLOR"]], True,
                       setup_info["INPUT_BOX_BORDER_WIDTH"], setup_info["INPUT_BOX_BORDER_RADIUS"], -1)
-input_box.is_button(Utils.COLORS[setup_info["ACTIVE_COLOR"]])
+input_box.is_button(Utils.COLORS[setup_info["ACTIVE_COLOR"]], True)
+input_box_font = set_font()
+input_box_text = setup_info["INPUT_BOX_STARTUP_TEXT"]
+input_box.is_display_text(input_box_font, input_box_text, Utils.COLORS[setup_info["TEXT_PASSIVE_COLOR"]], setup_info["INPUT_BOX_TEXT_X"], setup_info["INPUT_BOX_TEXT_Y"],
+                            Utils.COLORS[setup_info["TEXT_ACTIVE_COLOR"]])
 
 
 
+
+
+input_box_click = False
+user_input_text = ""
 while True:
     control_box_click = False
-    input_box_click = False
+
     pygame.time.Clock().tick(setup_info["FPS"])
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -58,9 +66,13 @@ while True:
             break
         if event.type == pygame.MOUSEBUTTONDOWN:
             mouse_pos = pygame.mouse.get_pos()
-            control_box_click = control_box.clicked(mouse_pos)
-            input_box_click = input_box.clicked(mouse_pos)
-            
+            control_box_click = control_box.clicked(mouse_pos, control_box_click)
+            input_box_click = input_box.clicked(mouse_pos, input_box_click)
+        if (event.type == pygame.KEYDOWN) and input_box_click:
+            if event.key == pygame.K_RETURN:
+                input_box_click = not(input_box_click)
+            if event.unicode.isdigit():
+                user_input_text += event.unicode
 
 
 

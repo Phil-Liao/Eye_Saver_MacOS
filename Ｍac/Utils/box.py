@@ -36,9 +36,10 @@ class box:
             else:
                 raise Exception("box.error box object not set as button")
     
-    def is_button(self, active_color):
+    def is_button(self, active_color, sticky=False):
         self.button = True
         self.active_color = active_color
+        self.sticky = sticky
     
     
     def is_input(self):
@@ -46,14 +47,20 @@ class box:
     def input(self):
         pass
     
-    def clicked(self, coordinates):
+    def clicked(self, coordinates, status):
         x, y = coordinates[0], coordinates[1]
         x_boundry = self.x <= x <= self.x + self.width
         y_boundry = self.y <= y <= self.y + self.height
         if x_boundry and y_boundry:
-            return True
+            if self.sticky:
+                return not(status)
+            else:
+                return True
         else:
-            return False
+            if self.sticky:
+                return status
+            else:
+                return False
     
     def draw_text(self, click):
         if not(click):
