@@ -71,7 +71,9 @@ while True:
         if (event.type == pygame.KEYDOWN) and input_box_click:
             if event.key == pygame.K_RETURN:
                 input_box_click = not(input_box_click)
-            if event.unicode.isdigit():
+            elif event.key == pygame.K_BACKSPACE:
+                user_input_text = user_input_text[:-1]
+            elif event.unicode.isdigit():
                 user_input_text += event.unicode
 
 

@@ -14,6 +14,7 @@ class box:
         self.button = False
         self.display_text = False
         self.border = border
+        self.input_box = False
         if self.border:
             self.border_width = border_width
             self.border_radius = border_radius
@@ -42,10 +43,14 @@ class box:
         self.sticky = sticky
     
     
-    def is_input(self):
-        pass
-    def input(self):
-        pass
+    def is_input(self, type):
+        self.input_box = True
+        self.input_type = type
+    def update_input(self, context):
+        if isinstance(context, self.input_type):
+            pass
+        else:
+            raise Exception("box.error wrong input type")
     
     def clicked(self, coordinates, status):
         x, y = coordinates[0], coordinates[1]
