@@ -24,9 +24,6 @@ class box:
                 self.border_color = border_color
 
 
-    def is_display_text(self):
-        self.display_text = True
-
     
 
 
@@ -62,12 +59,16 @@ class box:
 
 
 
-    def draw_text(self, text, font, text_color, text_x, text_y):
+    def draw_text(self, text, font, text_passive_color, text_active_color, text_x, text_y, clicked):
         if not(self.display_text):
             raise Exception("box.error object not able to display text")
 
         elif not(isinstance(text, str)):
             raise Exception("TypeError: expected str instance")
+        if clicked:
+            text_color = text_active_color
+        else:
+            text_color = text_passive_color
         self.text = font.render(text, True, text_color)
         self.text_rect = self.text.get_rect()
         self.text_rect.center = ((self.x+(self.width*text_x)), (self.y+(self.height*text_y)))

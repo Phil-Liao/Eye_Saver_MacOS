@@ -4,6 +4,7 @@ import json
 
 import Utils
 pygame.init()
+pygame.font.init()
 
 with open("/Users/philliao/Documents/Eye-Saver/Ｍac/setup.json") as file:
     setup_info = json.load(file)
@@ -48,7 +49,7 @@ input_box_text = setup_info["INPUT_BOX_STARTUP_TEXT"]
 
 
 
-
+main_text = setup_info["BG_STARTUP_TEXT"]
 
 input_box_click = False
 user_input_text = ""
@@ -71,16 +72,25 @@ while True:
                 user_input_text = user_input_text[:-1]
             elif event.unicode.isdigit():
                 user_input_text += event.unicode
-
+    if input_box_click and input_box_text == setup_info["INPUT_BOX_STARTUP_TEXT"]:
+        input_box_text = ""
+    elif input_box_click:
+        input_box_text = user_input_text
 
 
 
 
     bg_font = set_font(setup_info["BG_TEXT_TYPE"], setup_info["BG_TEXT_SIZE"])
     
-    main_text = setup_info["BG_STARTUP_TEXT"]
+    
     draw_background(WIN, Utils.colors.COLORS[setup_info["BG_COLOR"]], setup_info["WIDTH"], setup_info["HEIGHT"], bg_font, main_text, Utils.COLORS[setup_info["TEXT_PASSIVE_COLOR"]])
     
     control_box.draw_box(control_box_click)
     input_box.draw_box(input_box_click)
+
+    control_box.draw_text(control_box_text, control_box_font, Utils.COLORS[setup_info["TEXT_PASSIVE_COLOR"]], Utils.COLORS[setup_info["TEXT_ACTIVE_COLOR"]],
+                          setup_info["CONTROL_BOX_TEXT_X"], setup_info["CONTROL_BOX_TEXT_Y"], control_box_click)
+    input_box.draw_text(input_box_text, input_box_font, Utils.COLORS[setup_info["TEXT_PASSIVE_COLOR"]], Utils.COLORS[setup_info["TEXT_ACTIVE_COLOR"]],
+                        setup_info["INPUT_BOX_TEXT_X"], setup_info["INPUT_BOX_TEXT_Y"], input_box_click)
+    
     pygame.display.update()
