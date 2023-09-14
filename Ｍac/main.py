@@ -51,6 +51,18 @@ input_box_text = setup_info["INPUT_BOX_STARTUP_TEXT"]
 
 main_text = setup_info["BG_STARTUP_TEXT"]
 
+
+
+
+def start_countdown(main_text, countdown_time):
+    start = time.time()
+    return start
+
+
+
+
+
+started = False
 input_box_click = False
 user_input_text = ""
 while True:
@@ -67,22 +79,49 @@ while True:
             input_box_click = input_box.clicked(mouse_pos, input_box_click)
         if (event.type == pygame.KEYDOWN) and input_box_click:
             if event.key == pygame.K_RETURN:
+                
+                
+                started = True
                 input_box_click = not(input_box_click)
+                countdown_time = float(user_input_text)
+                start_time = start_countdown(main_text, countdown_time)
+                user_input_text = ""
+            
+            
+            
+            
             elif event.key == pygame.K_BACKSPACE:
                 user_input_text = user_input_text[:-1]
             elif event.unicode.isdigit():
                 user_input_text += event.unicode
-    if input_box_click and input_box_text == setup_info["INPUT_BOX_STARTUP_TEXT"]:
+            elif event.key == pygame.K_PERIOD or event.key == pygame.K_KP_PERIOD:
+                user_input_text += event.unicode
+            
+    if control_box_click and input_box_click:
+        
+        
+        started = True
+        input_box_click = False
+        countdown_time = float(user_input_text)
+        start_time = start_countdown(main_text, countdown_time)
+        user_input_text = ""
+    
+    
+    
+    elif input_box_click and input_box_text == setup_info["INPUT_BOX_STARTUP_TEXT"]:
         input_box_text = ""
     elif input_box_click:
         input_box_text = user_input_text
 
 
-
-
+    if started:
+        if (time.time() - start_time) >= countdown_time*60:
+            main_text = setup_info["BG_TIME_UP_TEXT"]
+        if (time.time() - start_time) < countdown_time*60:
+            main_text = str(round((countdown_time*60 - time.time() + start_time)/60, 2))
     bg_font = set_font(setup_info["BG_TEXT_TYPE"], setup_info["BG_TEXT_SIZE"])
-    
-    
+
+
     draw_background(WIN, Utils.colors.COLORS[setup_info["BG_COLOR"]], setup_info["WIDTH"], setup_info["HEIGHT"], bg_font, main_text, Utils.COLORS[setup_info["TEXT_PASSIVE_COLOR"]])
     
     control_box.draw_box(control_box_click)
