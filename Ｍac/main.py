@@ -1,7 +1,7 @@
 import pygame
 import time
 import json
-import threading
+import playsound
 
 import Utils
 pygame.init()
@@ -122,6 +122,9 @@ while True:
         if (time.time() - start_time) < countdown_time*60:
             main_text = f"{str(round((countdown_time*60 - time.time() + start_time)/60, 2))} mins left"
     bg_font = set_font(setup_info["BG_TEXT_TYPE"], setup_info["BG_TEXT_SIZE"])
+    if times_up:
+        Utils.play_file("/Users/philliao/Documents/Eye-Saver/Ｍac/times_up.wav")
+
 
     draw_background(WIN, Utils.colors.COLORS[setup_info["BG_COLOR"]], setup_info["WIDTH"], setup_info["HEIGHT"], bg_font, main_text, Utils.COLORS[setup_info["TEXT_PASSIVE_COLOR"]])
     
