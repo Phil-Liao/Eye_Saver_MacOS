@@ -1,13 +1,13 @@
 import pygame
 import time
 import json
-import playsound
 
 import Utils
 pygame.init()
 pygame.font.init()
+pygame.mixer.init()
 
-with open("/Users/philliao/Documents/Eye-Saver/Ｍac/setup.json") as file:
+with open("/Users/philliao/Documents/Eye-Saver/setup.json") as file:
     setup_info = json.load(file)
 
 WIN = pygame.display.set_mode((setup_info["WIDTH"], setup_info["HEIGHT"]))
@@ -74,6 +74,7 @@ started = False
 times_up = False
 input_box_click = False
 user_input_text = ""
+sound_time = 1.5
 while True:
     control_box_click = False
 
@@ -122,10 +123,13 @@ while True:
         if (time.time() - start_time) < countdown_time*60:
             main_text = f"{str(round((countdown_time*60 - time.time() + start_time)/60, 2))} mins left"
     bg_font = set_font(setup_info["BG_TEXT_TYPE"], setup_info["BG_TEXT_SIZE"])
-    if times_up:
-        Utils.play_file("/Users/philliao/Documents/Eye-Saver/Ｍac/times_up.wav")
-
-
+    
+    if times_up and not(pygame.mixer.music.get_busy()):
+        pygame.mixer.music.load(setup_info["TIMES_UP_SOUND"])
+        print(pygame.mixer.music.get_busy())
+        pygame.mixer.music.play(0)
+        print(time.time()-sound_time)
+        sound_time = time.time()
     draw_background(WIN, Utils.colors.COLORS[setup_info["BG_COLOR"]], setup_info["WIDTH"], setup_info["HEIGHT"], bg_font, main_text, Utils.COLORS[setup_info["TEXT_PASSIVE_COLOR"]])
     
     control_box.draw_box(control_box_click)

@@ -39,5 +39,7 @@
 
     "FPS":60,
 
-    "PRESET_TIME":30
+    "PRESET_TIME":30,
+
+    "TIMES_UP_SOUND":"times_up.wav"
 }
